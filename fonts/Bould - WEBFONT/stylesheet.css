@@ -1,0 +1,126 @@
+@font-face {
+    font-family: 'Bould';
+    src: url('Bould-ExtraLightItalic.woff2') format('woff2'),
+        url('Bould-ExtraLightItalic.woff') format('woff');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bould';
+    src: url('Bould-Medium.woff2') format('woff2'),
+        url('Bould-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bould';
+    src: url('Bould-SemiBoldItalic.woff2') format('woff2'),
+        url('Bould-SemiBoldItalic.woff') format('woff');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bould';
+    src: url('Bould-ExtraLight.woff2') format('woff2'),
+        url('Bould-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bould';
+    src: url('Bould-Thin.woff2') format('woff2'),
+        url('Bould-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bould';
+    src: url('Bould-LightItalic.woff2') format('woff2'),
+        url('Bould-LightItalic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bould';
+    src: url('Bould-RegularItalic.woff2') format('woff2'),
+        url('Bould-RegularItalic.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bould';
+    src: url('Bould-Regular.woff2') format('woff2'),
+        url('Bould-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bould';
+    src: url('Bould-Bold.woff2') format('woff2'),
+        url('Bould-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bould';
+    src: url('Bould-MediumItalic.woff2') format('woff2'),
+        url('Bould-MediumItalic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bould';
+    src: url('Bould-Light.woff2') format('woff2'),
+        url('Bould-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bould';
+    src: url('Bould-BoldItalic.woff2') format('woff2'),
+        url('Bould-BoldItalic.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bould';
+    src: url('Bould-SemiBold.woff2') format('woff2'),
+        url('Bould-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Bould';
+    src: url('Bould-ThinItalic.woff2') format('woff2'),
+        url('Bould-ThinItalic.woff') format('woff');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+}
+
