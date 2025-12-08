@@ -1,4 +1,4 @@
-# Planning Scherm - Post Lounge
+# Planning Scherm
 
 Dashboard applicatie voor het weergeven van suite planningen en beschikbaarheid.
 
@@ -8,76 +8,117 @@ Dit project bevat twee versies:
 
 ### 1. AppScript Versie (`PL PLANNINGS SCHERM APPSCRIPT VERSIE/`)
 
-De productie versie die draait als Google Apps Script web app en data ophaalt uit Google Sheets.
+Google Apps Script web applicatie die data ophaalt uit een Google Sheets spreadsheet.
 
 **Bestanden:**
-- `code.gs` - Apps Script backend code voor data ophalen uit Google Sheets
+- `code.gs` - Apps Script backend code voor het ophalen van data uit Google Sheets
 - `index.html` - Hoofd HTML template
 - `script.html` - JavaScript code voor de frontend
 - `style.html` - CSS styling
 - `fonts.html` - Font definities
 
 **Setup instructies:**
-1. Open Google Apps Script (script.google.com)
+
+1. Open [Google Apps Script](https://script.google.com/)
 2. Maak een nieuw project aan
-3. Kopieer de inhoud van `code.gs` naar Code.gs
-4. Maak HTML bestanden aan en kopieer de inhoud:
-   - `index.html` → index.html
-   - `script.html` → script.html
-   - `style.html` → style.html
-   - `fonts.html` → fonts.html
-5. Update de Spreadsheet ID in `code.gs` (regel 54) indien nodig
-6. Deploy als web app via "Deploy" > "New deployment" > "Web app"
-7. Stel de juiste permissies in (execute as me, access: anyone)
+3. Kopieer de inhoud van `code.gs` naar het `Code.gs` bestand
+4. Maak de volgende HTML bestanden aan:
+   - `index.html` (kopieer van `index.html`)
+   - `script.html` (kopieer van `script.html`)
+   - `style.html` (kopieer van `style.html`)
+   - `fonts.html` (kopieer van `fonts.html`)
+5. Configureer de spreadsheet ID in `code.gs` (regel 54):
+   ```javascript
+   const ss = SpreadsheetApp.openById('YOUR_SPREADSHEET_ID');
+   ```
+6. Configureer de tab naam in `code.gs` (regel 5):
+   ```javascript
+   const TAB_NAME = '2025'; // Pas aan naar de juiste tab naam
+   ```
+7. Deploy als web app:
+   - Ga naar "Deploy" > "New deployment"
+   - Kies "Web app" als type
+   - Stel execute as in op "Me"
+   - Stel "Who has access" in op "Anyone"
+   - Klik op "Deploy"
 
 **Functionaliteit:**
 - Haalt automatisch data op voor vandaag uit Google Sheets
 - Toont suites per verdieping (Boven, Begane grond, Kelder)
-- Toont Audio, Colorgrading en Remote sets
-- Stilte-modus toggle voor tijdens opnames
+- Toont audio, colorgrading en remote sets
+- Stilte-modus toggle functionaliteit
 
 ### 2. Demo Versie (`PL PLANNINGS SCHERM DEMO/`)
 
-Standalone demo versie met placeholder data voor lokale ontwikkeling en testen.
+Standalone HTML/CSS/JavaScript versie met placeholder data voor lokale ontwikkeling en testing.
 
 **Bestanden:**
 - `index.html` - Hoofd HTML bestand
-- `script.js` - JavaScript met placeholder data
+- `script.js` - JavaScript code met placeholder data
 - `style.css` - CSS styling
 - `fonts.css` - Font definities
 
 **Setup instructies:**
-1. Open `index.html` in een moderne browser
-2. Of serveer lokaal met een web server (bijv. `python -m http.server` of `npx serve`)
+
+1. Open `index.html` in een moderne webbrowser
+2. Of gebruik een lokale development server:
+   ```bash
+   # Met Python
+   python -m http.server 8000
+   
+   # Met Node.js (http-server)
+   npx http-server
+   ```
+3. Open `http://localhost:8000` in je browser
 
 **Functionaliteit:**
 - Zelfde UI als AppScript versie
-- Gebruikt placeholder data voor demo doeleinden
-- Handig voor UI/UX ontwikkeling zonder Google Sheets connectie
+- Gebruikt placeholder data in plaats van Google Sheets
+- Handig voor UI/UX ontwikkeling en testing
+
+## Data Structuur
+
+De applicatie verwacht data in de volgende structuur:
+
+```javascript
+{
+  rowNumber: 2,
+  dateLabel: '01-01-2025',
+  data: {
+    notes: [{ value: 'Notitie tekst' }],
+    boven: [
+      { label: 'SET 1 - Rector', value: 'Rector / 08:00 - 12:00' }
+    ],
+    begane: [...],
+    kelder: [...],
+    audio: [...],
+    color: [...],
+    remote: [...]
+  }
+}
+```
+
+## Google Sheets Configuratie
+
+De AppScript versie verwacht een Google Sheets spreadsheet met:
+- Kolom A: Datum (formaat: dd-MM-yyyy)
+- Kolom C: Notities
+- Kolommen E-L: Boven verdieping suites
+- Kolommen Q-V: Begane grond suites
+- Kolommen X, Y, AR: Kelder suites
+- Kolommen AH-AK: Audio suites
+- Kolommen AM-AO: Colorgrading suites
+- Kolommen AC-AD, AE, AAF: Remote sets
+
+Zie `code.gs` voor de exacte kolom mapping in `SECTION_COLUMNS`.
 
 ## Features
 
-- **Real-time data**: AppScript versie haalt live data op uit Google Sheets
-- **Stilte-modus**: Toggle knop om stilte-modus in te schakelen tijdens opnames
+- **Stilte-modus**: Toggle knop om een pulserende rode achtergrond te activeren en notities te overschrijven
 - **Responsive design**: Werkt op verschillende schermformaten
-- **Suite overzicht**: Georganiseerd per verdieping en type
-
-## Google Sheets Structuur
-
-De AppScript versie verwacht een Google Sheet met:
-- Tab naam: `2025` (configureerbaar in `code.gs`)
-- Kolom A: Datum (formaat: dd-MM-yyyy)
-- Kolommen C, E-V, X-Y, AR, AC-AF, AH-AK, AM-AO: Suite data per sectie
-
-Zie `code.gs` voor de exacte kolom mapping per sectie.
-
-## Technologie
-
-- **Frontend**: HTML5, CSS3, Vanilla JavaScript
-- **Backend**: Google Apps Script (JavaScript)
-- **Data source**: Google Sheets
+- **Real-time data**: AppScript versie haalt automatisch de meest recente data op
 
 ## Licentie
 
-Post Lounge - Intern gebruik
+[Voeg licentie informatie toe indien nodig]
 
