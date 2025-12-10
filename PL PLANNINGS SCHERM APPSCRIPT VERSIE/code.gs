@@ -1,29 +1,6 @@
-// REST API endpoint voor data ophalen
 function doGet(e) {
-  const path = e.parameter.path || 'today';
-  let result;
-  
-  if (path === 'today') {
-    result = getDashboardDataForToday();
-  } else if (path === 'row' && e.parameter.row) {
-    const rowNumber = parseInt(e.parameter.row, 10);
-    const data = getDashboardData(rowNumber);
-    const sh = getSheet();
-    const dateValue = sh.getRange(rowNumber, 1).getDisplayValue();
-    
-    result = {
-      data,
-      rowNumber,
-      dateLabel: dateValue
-    };
-  } else {
-    // Fallback: return error
-    result = { error: 'Invalid path' };
-  }
-  
-  // Return JSON met CORS headers voor cross-origin requests
-  return ContentService.createTextOutput(JSON.stringify(result))
-    .setMimeType(ContentService.MimeType.JSON);
+  const template = HtmlService.createTemplateFromFile('index');
+  return template.evaluate();
 }
 const TAB_NAME = '2025';
 

@@ -7,16 +7,19 @@ Deze versie host de frontend op GitHub Pages en gebruikt AppScript als REST API 
 ### 1. AppScript Backend Configureren
 
 1. Open [Google Apps Script](https://script.google.com/)
-2. Maak een nieuw project aan of open je bestaande project
-3. Kopieer de inhoud van `../PL PLANNINGS SCHERM APPSCRIPT VERSIE/code.gs` naar je AppScript project
-4. Configureer de spreadsheet ID in `code.gs` (regel 54):
+2. Maak een **nieuw project** aan (dit is een aparte AppScript voor GitHub Pages)
+3. Kopieer de inhoud van `code.gs` uit deze map naar je nieuwe AppScript project
+4. Configureer de spreadsheet ID in `code.gs` (regel 7):
    ```javascript
-   const ss = SpreadsheetApp.openById('YOUR_SPREADSHEET_ID');
+   const SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID';
    ```
-5. Configureer de tab naam in `code.gs` (regel 5):
+5. Configureer de tab naam in `code.gs` (regel 6):
    ```javascript
    const TAB_NAME = '2025'; // Pas aan naar de juiste tab naam
    ```
+   
+   **Let op:** Deze AppScript versie is veel simpeler - het geeft alleen ruwe data terug. 
+   Alle configuratie (SECTION_COLUMNS) staat nu in `script.js` in de frontend!
 6. Deploy als Web App:
    - Ga naar "Deploy" > "New deployment"
    - Kies "Web app" als type
@@ -27,7 +30,7 @@ Deze versie host de frontend op GitHub Pages en gebruikt AppScript als REST API 
 
 ### 2. Frontend Configureren
 
-1. Open `script.js` in deze map
+1. Open `config.js` in deze map
 2. Vervang `YOUR_APPSCRIPT_WEB_APP_URL_HERE` met de Web App URL die je in stap 1 hebt gekopieerd:
    ```javascript
    const APPSCRIPT_API_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
@@ -53,46 +56,52 @@ Als je custom fonts wilt gebruiken:
 
 ## API Endpoints
 
-De AppScript backend ondersteunt de volgende endpoints:
+De AppScript backend ondersteunt de volgende endpoints en geeft **ruwe data** terug:
 
 ### GET `/exec?path=today`
-Haalt data op voor vandaag.
+Haalt ruwe data op voor vandaag.
 
 **Response:**
 ```json
 {
-  "data": {
-    "notes": [{ "value": "..." }],
-    "boven": [{ "label": "...", "value": "..." }],
-    ...
-  },
   "rowNumber": 2,
-  "dateLabel": "01-01-2025"
+  "dateLabel": "01-01-2025",
+  "headers": ["Datum", "Kolom B", "NOTITIES", ...],
+  "rowData": ["01-01-2025", "waarde B", "notitie tekst", ...]
 }
 ```
 
 ### GET `/exec?path=row&row=2`
-Haalt data op voor een specifieke rij.
+Haalt ruwe data op voor een specifieke rij.
 
 **Response:**
 ```json
 {
-  "data": { ... },
   "rowNumber": 2,
-  "dateLabel": "01-01-2025"
+  "dateLabel": "01-01-2025",
+  "headers": ["Datum", "Kolom B", "NOTITIES", ...],
+  "rowData": ["01-01-2025", "waarde B", "notitie tekst", ...]
 }
 ```
+
+**Belangrijk:** De frontend (`script.js`) transformeert deze ruwe data naar de gewenste structuur op basis van de `SECTION_COLUMNS` configuratie. Dit betekent dat je configuratie wijzigingen kunt maken zonder AppScript opnieuw te deployen!
 
 ## Bestandsstructuur
 
 ```
 PL PLANNINGS SCHERM GITHUB PAGES/
 ├── index.html          # Hoofd HTML bestand
-├── script.js           # JavaScript met fetch() API calls
+├── config.js           # Configuratie (API URL, SECTION_COLUMNS, etc.)
+├── utils.js            # Helper functies (data transformatie)
+├── api.js              # API communicatie met AppScript
+├── render.js            # Rendering functies voor UI
+├── script.js            # Main entry point en event handlers
 ├── style.css           # CSS styling
 ├── fonts.css           # Font definities
 └── README.md           # Deze file
 ```
+
+**Let op:** De scripts worden in een specifieke volgorde geladen (zie `index.html`). Deze volgorde is belangrijk omdat modules elkaar gebruiken.
 
 ## Troubleshooting
 
@@ -103,7 +112,7 @@ Als je CORS errors krijgt, zorg ervoor dat:
 
 ### Data wordt niet geladen
 - Controleer de browser console voor errors
-- Verifieer dat de AppScript URL correct is in `script.js`
+- Verifieer dat de AppScript URL correct is in `config.js`
 - Test de AppScript URL direct in je browser (je zou JSON moeten zien)
 
 ### GitHub Pages werkt niet
