@@ -4,7 +4,7 @@ Dashboard applicatie voor het weergeven van suite planningen en beschikbaarheid.
 
 ## Project Structuur
 
-Dit project bevat twee versies:
+Dit project bevat drie versies:
 
 ### 1. AppScript Versie (`PL PLANNINGS SCHERM APPSCRIPT VERSIE/`)
 
@@ -75,6 +75,27 @@ Standalone HTML/CSS/JavaScript versie met placeholder data voor lokale ontwikkel
 - Zelfde UI als AppScript versie
 - Gebruikt placeholder data in plaats van Google Sheets
 - Handig voor UI/UX ontwikkeling en testing
+
+### 3. GitHub Pages Versie (`PL PLANNINGS SCHERM GITHUB PAGES/`)
+
+Frontend gehost op GitHub Pages met AppScript als REST API backend.
+
+**Bestanden:**
+- `index.html` - Hoofd HTML bestand
+- `script.js` - JavaScript met fetch() API calls naar AppScript
+- `style.css` - CSS styling
+- `fonts.css` - Font definities
+- `README.md` - Setup instructies voor GitHub Pages
+
+**Setup instructies:**
+
+Zie `PL PLANNINGS SCHERM GITHUB PAGES/README.md` voor gedetailleerde instructies.
+
+**Functionaliteit:**
+- Frontend gehost op GitHub Pages
+- AppScript fungeert alleen als REST API backend
+- Haalt data op via fetch() API calls
+- Zelfde UI als andere versies
 
 ## Data Structuur
 
