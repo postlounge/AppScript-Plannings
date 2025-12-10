@@ -6,7 +6,7 @@
 // gebeurt in de frontend (script.js)
 
 const TAB_NAME = '2025';
-const SPREADSHEET_ID = '1wt46WoqbRJg5suLljYUlMx8Gqs_voRV4D0QcbQVA6t4';
+const SPREADSHEET_ID = '1vi902Bu5j1mCzdBjqYTKAOfzgDjt5SXaJm6uD86jSI8';
 
 // REST API endpoint voor data ophalen
 function doGet(e) {
@@ -26,9 +26,16 @@ function doGet(e) {
     .setMimeType(ContentService.MimeType.JSON);
 }
 
+// Cache voor sheet object (blijft actief tijdens script execution)
+let cachedSheet = null;
+
 function getSheet() {
-  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-  return ss.getSheetByName(TAB_NAME);
+  // Cache sheet object om meerdere calls te vermijden
+  if (!cachedSheet) {
+    const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+    cachedSheet = ss.getSheetByName(TAB_NAME);
+  }
+  return cachedSheet;
 }
 
 // Haalt ruwe data op voor een specifieke rij

@@ -2,7 +2,7 @@
 // Hier staan alle configuratie instellingen
 
 // AppScript Web App URL - Vervang dit met je eigen URL na deploy
-const APPSCRIPT_API_URL = 'YOUR_APPSCRIPT_WEB_APP_URL_HERE';
+const APPSCRIPT_API_URL = 'https://script.google.com/macros/s/AKfycbyJn8ARlhM8ROSVL3KvXs9pXr9h-s8N7xSZzj2sB0j_b7qlBUwFux8U4MzePiQ0XH8Epg/exec';
 
 // SECTION_COLUMNS configuratie - bepaalt welke kolommen bij welke sectie horen
 // Deze configuratie is nu volledig in de frontend, geen AppScript deploy nodig bij wijzigingen!
