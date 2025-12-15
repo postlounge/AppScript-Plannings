@@ -1,9 +1,36 @@
-// API functies - communicatie met AppScript backend
+/**
+ * API functies
+ * 
+ * Communicatie met AppScript backend en caching functionaliteit.
+ */
 
-// Cache configuratie (5 minuten cache)
-const CACHE_DURATION = 5 * 60 * 1000; // 5 minuten in milliseconden
+/**
+ * Cache duur configuratie
+ * 
+ * @constant {number}
+ * @default 30000 (30 seconden in milliseconden)
+ * Verkort naar 30 seconden voor snellere updates van spreadsheet wijzigingen
+ */
+const CACHE_DURATION = 30 * 1000; // 30 seconden in milliseconden
 
-// Functie om data op te halen van AppScript API
+/**
+ * Haalt data op van AppScript API
+ * 
+ * Haalt dashboard data op van de AppScript backend. Gebruikt caching om
+ * onnodige API calls te voorkomen. Transformeert ruwe data naar gestructureerde format.
+ * 
+ * @param {string} path - API path ('today' of 'row')
+ * @param {number|null} rowNumber - Rij nummer (alleen nodig bij path='row')
+ * @returns {Promise<Object|null>} 
+ *   Data object met {data, rowNumber, dateLabel} of null bij fout
+ * 
+ * @example
+ * // Haal data op voor vandaag
+ * const todayData = await fetchDashboardData('today');
+ * 
+ * // Haal data op voor specifieke rij
+ * const rowData = await fetchDashboardData('row', 5);
+ */
 async function fetchDashboardData(path = 'today', rowNumber = null) {
   if (!APPSCRIPT_API_URL || APPSCRIPT_API_URL === 'YOUR_APPSCRIPT_WEB_APP_URL_HERE') {
     console.error('AppScript API URL is niet geconfigureerd. Zie config.js voor instructies.');
@@ -59,7 +86,20 @@ async function fetchDashboardData(path = 'today', rowNumber = null) {
   }
 }
 
-// Cache functies
+/**
+ * ============================================
+ * CACHE FUNCTIES
+ * ============================================
+ */
+
+/**
+ * Haalt gecachte data op
+ * 
+ * Controleert of er gecachte data bestaat voor de gegeven key en of deze nog geldig is.
+ * 
+ * @param {string} key - Cache key
+ * @returns {Object|null} Gecachte data of null als niet gevonden/verlopen
+ */
 function getCachedData(key) {
   try {
     const cached = localStorage.getItem(key);
@@ -81,6 +121,14 @@ function getCachedData(key) {
   }
 }
 
+/**
+ * Slaat data op in cache
+ * 
+ * Slaat data op in localStorage met timestamp voor cache validatie.
+ * 
+ * @param {string} key - Cache key
+ * @param {Object} data - Data om op te slaan
+ */
 function setCachedData(key, data) {
   try {
     const cache = {

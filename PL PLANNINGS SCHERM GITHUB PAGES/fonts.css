@@ -1,22 +1,26 @@
-/* Custom fonts - Almarena Neue
+/* Custom fonts - Almarena Neue en Bould
  * Fonts worden geladen vanuit de fonts/ map via relatieve paths
  * Werkt zowel lokaal als op GitHub Pages
  * 
  * STRUCTUUR:
  * PL PLANNINGS SCHERM GITHUB PAGES/
  *   ├── fonts/
- *   │   └── AlmarenaNeue - WEBFONT/
- *   │       ├── AlmarenaNeue-Regular.woff2
- *   │       ├── AlmarenaNeue-SemiBold.woff2
- *   │       └── AlmarenaNeue-Bold.woff2
+ *   │   ├── AlmarenaNeue - WEBFONT/
+ *   │   │   ├── AlmarenaNeue-Regular.woff2
+ *   │   │   ├── AlmarenaNeue-SemiBold.woff2
+ *   │   │   └── AlmarenaNeue-Bold.woff2
+ *   │   └── Bould - WEBFONT/
+ *   │       ├── Bould-Regular.woff2
+ *   │       ├── Bould-SemiBold.woff2
+ *   │       └── Bould-Bold.woff2
  *   └── fonts.css
  */
 
 /* Almarena Neue - Regular (400) */
 @font-face {
   font-family: 'Almarena Neue';
-  src: url('./fonts/AlmarenaNeue - WEBFONT/AlmarenaNeue-Regular.woff2') format('woff2'),
-       url('./fonts/AlmarenaNeue - WEBFONT/AlmarenaNeue-Regular.woff') format('woff');
+  src: url('../fonts/AlmarenaNeue - WEBFONT/AlmarenaNeue-Regular.woff2') format('woff2'),
+       url('../fonts/AlmarenaNeue - WEBFONT/AlmarenaNeue-Regular.woff') format('woff');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -25,8 +29,8 @@
 /* Almarena Neue - SemiBold (600) */
 @font-face {
   font-family: 'Almarena Neue';
-  src: url('./fonts/AlmarenaNeue - WEBFONT/AlmarenaNeue-SemiBold.woff2') format('woff2'),
-       url('./fonts/AlmarenaNeue - WEBFONT/AlmarenaNeue-SemiBold.woff') format('woff');
+  src: url('../fonts/AlmarenaNeue - WEBFONT/AlmarenaNeue-SemiBold.woff2') format('woff2'),
+       url('../fonts/AlmarenaNeue - WEBFONT/AlmarenaNeue-SemiBold.woff') format('woff');
   font-weight: 600;
   font-style: normal;
   font-display: swap;
@@ -35,8 +39,8 @@
 /* Almarena Neue - Bold (700) */
 @font-face {
   font-family: 'Almarena Neue';
-  src: url('./fonts/AlmarenaNeue - WEBFONT/AlmarenaNeue-Bold.woff2') format('woff2'),
-       url('./fonts/AlmarenaNeue - WEBFONT/AlmarenaNeue-Bold.woff') format('woff');
+  src: url('../fonts/AlmarenaNeue - WEBFONT/AlmarenaNeue-Bold.woff2') format('woff2'),
+       url('../fonts/AlmarenaNeue - WEBFONT/AlmarenaNeue-Bold.woff') format('woff');
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -45,17 +49,67 @@
 /* Almarena Neue - ExtraBold (800) voor extra nadruk */
 @font-face {
   font-family: 'Almarena Neue';
-  src: url('./fonts/AlmarenaNeue - WEBFONT/AlmarenaNeue-ExtraBold.woff2') format('woff2'),
-       url('./fonts/AlmarenaNeue - WEBFONT/AlmarenaNeue-ExtraBold.woff') format('woff');
+  src: url('../fonts/AlmarenaNeue - WEBFONT/AlmarenaNeue-ExtraBold.woff2') format('woff2'),
+       url('../fonts/AlmarenaNeue - WEBFONT/AlmarenaNeue-ExtraBold.woff') format('woff');
   font-weight: 800;
   font-style: normal;
   font-display: swap;
 }
 
-:root {
-  /* Gebruik Almarena Neue als primaire font, met Open Sans als fallback */
-  --title-font-family: 'Almarena Neue', 'Open Sans', sans-serif;
-  --set-font-family: 'Almarena Neue', 'Open Sans', sans-serif;
-  --info-font-family: 'Almarena Neue', 'Open Sans', sans-serif;
-  --note-font-family: 'Almarena Neue', 'Open Sans', sans-serif;
+/* ============================================
+   BOULD FONT FAMILY
+   ============================================ */
+
+/* Bould - Light (300) */
+@font-face {
+  font-family: 'Bould';
+  src: url('../fonts/Bould - WEBFONT/Bould-Light.woff2') format('woff2'),
+       url('../fonts/Bould - WEBFONT/Bould-Light.woff') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
 }
+
+/* Bould - Regular (400) */
+@font-face {
+  font-family: 'Bould';
+  src: url('../fonts/Bould - WEBFONT/Bould-Regular.woff2') format('woff2'),
+       url('../fonts/Bould - WEBFONT/Bould-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bould - Medium (500) */
+@font-face {
+  font-family: 'Bould';
+  src: url('../fonts/Bould - WEBFONT/Bould-Medium.woff2') format('woff2'),
+       url('../fonts/Bould - WEBFONT/Bould-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bould - SemiBold (600) */
+@font-face {
+  font-family: 'Bould';
+  src: url('../fonts/Bould - WEBFONT/Bould-SemiBold.woff2') format('woff2'),
+       url('../fonts/Bould - WEBFONT/Bould-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bould - Bold (700) */
+@font-face {
+  font-family: 'Bould';
+  src: url('../fonts/Bould - WEBFONT/Bould-Bold.woff2') format('woff2'),
+       url('../fonts/Bould - WEBFONT/Bould-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* CSS variabelen worden gedefinieerd in style.css, niet hier
+ * Deze :root block is verwijderd om conflicten te voorkomen
+ */

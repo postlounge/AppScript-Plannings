@@ -1,105 +1,66 @@
-/* Algemene layout */
+/* ============================================
+   ALGEMENE LAYOUT & RESET
+   ============================================ */
+
+/* Body styling - donkere achtergrond */
 body {
   background: #14143c;
-  margin: 20px;
+  margin: 10px;
   padding: 20px;
 }
 
+/* Box-sizing reset voor alle elementen */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-/* Theme variables: tweak these to control typography and spacing project-wide */
+/* ============================================
+   CSS VARIABELEN (THEME CONFIGURATIE)
+   Pas deze variabelen aan om het hele design te wijzigen
+   ============================================ */
 :root {
-/*variabelen voor titels*/
-  --title-font-family: "Open Sans", sans-serif;
+  /*variabelen voor titels*/
+  --title-font-family: "Almarena Neue", "Open Sans", sans-serif;
   --title-font-size: 20px;
-  --title-font-weight: 600;
-  --title-color: #000000;
-/*variabelen voor sets*/
-  --set-font-family: "Open Sans", sans-serif;
+  --title-font-weight: 700; /* Bold */
+  --title-color: #ffffff;
+  /*variabelen voor sets*/
+  --set-font-family: "Bould", "Open Sans", sans-serif;
   --set-font-size: 15px;
-  --set-font-weight: 600;
+  --set-font-weight: 700; /* Bold */
   --set-color: #000000;
-/*variabelen voor info*/
-  --info-font-family: "Open Sans", sans-serif;
+  /*variabelen voor info*/
+  --info-font-family: "Bould", "Open Sans", sans-serif;
   --info-font-size: 15px;
   --info-color: #000000;
-/*variabelen voor notitieblock*/
-  --note-font-family: "Open Sans", sans-serif;
-  --note-font-size: 25px;
-  --note-font-weight: bold;
-  --note-color: #222222;
+  /*variabelen voor wifi info*/
+  --wifi-info-font-family: "Almarena Neue", "Open Sans", sans-serif;
+  --wifi-info-font-size: 15px;
+  --wifi-info-font-weight: 600;
+  --wifi-info-color: #000000;
   /*uitlijning*/
   --pair-gap: 5px;
   --card-padding: 3px 3px;
-  --grid-row-height: 750px; /* vaste hoogte voor de hoofdgrid-rij (pas aan naar wens) */
-  /* Silence toggle vars */
-  --silence-btn-bg-off: #14143c;
-  --silence-btn-bg-on: #c00000;
-  --silence-btn-text: #ffffff;
-  --silence-btn-text-on: #ffffff;
-  --silence-banner-bg: rgba(0, 0, 0, 0.9);
-  --silence-banner-text: #ffffff;
-}
-
-.silence-container {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.silence-toggle {
-  cursor: pointer;
-  border: 2px solid #ffffff;
-  background: var(--silence-btn-bg-off);
-  color: var(--silence-btn-text);
-  padding: 10px 16px;
-  border-radius: 999px;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 700;
-  font-size: 14px;
-  transition: background 0.2s ease, color 0.2s ease, transform 0.15s ease;
-}
-
-.silence-toggle:hover {
-  transform: translateY(-1px);
-}
-
-body.silence-on .silence-toggle {
-  background: var(--silence-btn-bg-on);
-  color: var(--silence-btn-text-on);
-}
-
-.silence-banner {
-  display: none;
-  background: var(--silence-banner-bg);
-  color: var(--silence-banner-text);
-  padding: 10px 16px;
-  border-radius: 12px;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.silence-banner.visible {
-  display: inline-flex;
 }
 
 body.silence-on {
   animation: pulse-red 2s ease-in-out infinite;
 }
 
+/* Animatie voor pulserende rode achtergrond bij stilte-modus */
 @keyframes pulse-red {
   0%   { background-color: #14143c; }
   50%  { background-color: #c00000; }
   100% { background-color: #14143c; }
 }
 
+/* ============================================
+   HOOFD LAYOUT STRUCTUUR
+   ============================================ */
+
+/* Hoofd container voor alle content */
 .layout {
   display: flex;
   flex-direction: column;
@@ -107,135 +68,400 @@ body.silence-on {
   margin-bottom: 0px;
 }
 
+/* Top row: Welkom tekst links, Vandaag balk rechts */
 .top-row {
   display: flex;
-  align-items: flex-start;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+/* Welkom tekst links */
+.welkom-text {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 32px;
+  color: #ffffff;
+}
+
+.welkom-word {
+  font-family: 'Almarena Neue', 'Open Sans', sans-serif;
+  font-weight: 200; /* Bold */
+}
+
+.bij-word {
+  font-family: 'Almarena Neue', 'Open Sans', sans-serif;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.top-logo {
+  height: 100px;      /* pas gerust aan als je het groter/kleiner wilt */
+  width: auto;
+  display: block;
+  margin-left: 10px;
+}
+
+/* Vandaag balk rechts - witte achtergrond */
+.vandaag-balk {
+  background: #ffffff;
+  padding: 12px 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
   gap: 10px;
+  font-family: var(--title-font-family);
+  font-size: 18px;
+  font-weight: 600;
+  color: #14143c;
+}
+
+.vandaag-label {
+  font-weight: 700;
+}
+
+.vandaag-separator {
+  opacity: 0.5;
+}
+
+.vandaag-content {
+  font-weight: 400;
+}
+
+/* ============================================
+   SLIDESHOW FUNCTIONALITEIT
+   ============================================ */
+
+/* Container voor de hele slideshow */
+.slideshow-container {
+  position: relative;
+  width: 100%;
+}
+
+/* Individuele slide - standaard verborgen */
+.slide {
+  display: none;
+  width: 100%;
+}
+
+/* Actieve slide - zichtbaar */
+.slide.active {
+  display: block;
+}
+
+/* ============================================
+   GRID LAYOUTS VOOR SLIDES
+   ============================================ */
+
+/* Page grid - verschillende layouts voor verschillende slides */
+.slide[data-slide="0"] .page {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Twee kolommen: Boven Verdieping en Begane Grond */
+  grid-auto-rows: min-content;
+  gap: 69px;
+  align-items: start;
+}
+
+/* Suite cards op slide 0 */
+.slide[data-slide="0"] .page > .card-wrapper.boven-card {
+  grid-column: 1; /* Links */
+  grid-row: 1;
+}
+
+.slide[data-slide="0"] .page > .card-wrapper.begane-card {
+  grid-column: 2; /* Rechts */
+  grid-row: 1;
+}
+
+/* Bottom info grid onder Begane Grond */
+.bottom-info-grid {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+/* WiFi Info sectie - links met QR code en WiFi tekst */
+.wifi-info-section {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.wifi-qr-code {
+  width: 120px;
+  height: 120px;
+  background: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.qr-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 8px;
+}
+
+.wifi-text {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.wifi-line {
+  font-family: var(--wifi-info-font-family);
+  font-size: 16px;
+  font-weight: 400;
+  color: #ffffff;
+}
+
+/* ON AIR button - rechts */
+.on-air-section {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.on-air-button {
+  background: rgba(255, 50, 150, 1); /* Bright pink */
+  color: #ffffff;
+  border: none;
+  padding: 20px 40px;
+  border-radius: 60px;
+  font-family: var(--title-font-family);
+  font-size: 15px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.on-air-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 0, 255, 0.4);
+}
+
+.on-air-button:active {
+  transform: translateY(0);
+}
+
+/* Stilte modus styling voor ON AIR button */
+body.silence-on .on-air-button {
+  background: #c00000;
+  animation: pulse-red 2s ease-in-out infinite;
+}
+
+.slide[data-slide="1"] .page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: stretch;
 }
 
 .page {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-auto-rows: var(--grid-row-height);
+  grid-auto-rows: min-content;
   gap: 5px 10px; /* row-gap column-gap -> grotere ruimte vóór de rechterkolom */
+  align-items: start;
 }
 
-.right-column {
+/* Right column: 2x2 grid voor beneden suites (slide 1) */
+.slide[data-slide="1"] .right-column {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr; /* verdeel hoogte in twee gelijke rijen */
-  grid-auto-rows: 1fr;
-  height: 100%;
-  align-self: stretch;
-  row-gap: 10px; /* ruimte tussen bovenste en onderste rij */
-  column-gap: 10px;
-  align-content: stretch;
+  grid-template-columns: 1.4fr 1fr; /* eerste kolom (Suites/Audio) breder dan tweede (Colorgrading/Remote Editors) */
+  row-gap: 20px;
+  column-gap: 69px;
   align-items: flex-start;
-    /* Expliciete plaatsing van de kaarten in de rechter kolom
-      Hiermee kun je de volgorde wisselen zonder HTML te verplaatsen */
-    #kelder-card { grid-column: 1; grid-row: 1; }
-    #audio-card { grid-column: 2; grid-row: 1; }
-    #color-card { grid-column: 1; grid-row: 2; }
-    #remote-card { grid-column: 2; grid-row: 2; }
+  width: 100%;
+    /* Expliciete plaatsing van de card-wrappers in de 2x2 grid */
+    .slide[data-slide="1"] .right-column > .card-wrapper:nth-of-type(1) { grid-column: 1; grid-row: 1; }
+    .slide[data-slide="1"] .right-column > .card-wrapper:nth-of-type(2) { grid-column: 2; grid-row: 1; }
+    .slide[data-slide="1"] .right-column > .card-wrapper:nth-of-type(3) { grid-column: 1; grid-row: 2; }
+    .slide[data-slide="1"] .right-column > .card-wrapper:nth-of-type(4) { grid-column: 2; grid-row: 2; }
 }
 
-/* Kaarten */
+/* Bottom info grid voor slide 1 */
+.slide1-bottom {
+  margin-top: 0;
+  width: 100%;
+}
+
+/* (placeholder kolom verwijderd in huidige layout) */
+
+/* ============================================
+   CARD STYLING
+   ============================================ */
+
+/* Basis card styling - alle suite cards */
 .card {
   background: #f7f1eb;
-  border-radius: 10px;
+  border-radius: 30px;
   padding: 25px 35px 60px; /* extra bodemruimte zodat tekst niet uit de kaart valt */
-  width: auto;
-  height: 100%;
+  width: 100%;
   min-height: 250px;
-  align-self: stretch;
+  align-self: start;
 }
 
+/* Kleine cards - gebruikt voor kelder suites (slide 1) */
 .card.small {
   padding: 18px 28px; /* extra bodemruimte voor small cards */
-  height: 100%;
-  min-height: 20px; /* laat hoogte bepalen door de grid-rijen zodat de totalen gelijk blijven */
+  min-height: 20px;
 }
 
-.note-card {
-  margin-top: 0;
-  padding: 8px 12px; /* minimale ruimte rondom de tekst */
-  width: 100%;
-  height: auto;
-  min-height: auto;
-  flex: 0 1 auto; /* krimpt mee met de tekst */
-  align-self: flex-start; /* houdt dezelfde top alignment in de rij */
-}
+/* ============================================
+   CARD INHOUD & TYPOGRAPHY
+   ============================================ */
 
-.note-card .card-content {
+/* Card wrapper - bevat titel en card */
+.card-wrapper {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  flex-direction: column;
   width: 100%;
-  padding: 0;
 }
 
-/* Titels */
+/* Card titels - boven de cards, gecentreerd */
 .card-title {
   color: var(--title-color);
   font-family:var(--title-font-family) ;
   font-size: var(--title-font-size);
   font-weight: var(--title-font-weight);
-  margin-bottom: 1px;
-  margin-top: 1px;
-  text-align: left;
+  margin-bottom: 10px;
+  margin-top: 0;
+  text-align: center; /* Gecentreerd */
+  width: 100%;
 }
 
-/* Inhoud: links + verticale lijn + lege rechterkant */
+/* Card content container - grid layout voor consistente uitlijning */
 .card-content {
-  display: flex;
-  text-align: right;
+  display: grid;
+  grid-template-columns: 150px 1px 1fr; /* Vaste breedte voor left-list */
   gap: 10px;
-  align-items: flex-start;
+  align-items: stretch; /* Strekt items om dezelfde hoogte te hebben */
 }
+
+/* Utility class voor verborgen elementen */
 .hidden {
   display: none !important;
 }
 
+/* ============================================
+   LEFT/RIGHT SIDE LAYOUT
+   ============================================ */
 
-/* Voor toekomstige dynamische inhoud */
+/* Left list - suite namen (linkerkant van card) */
+.left-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  grid-column: 1; /* Eerste kolom in grid */
+  align-content: start;
+}
+
+.left-list .suite-item {
+  font-family: var(--set-font-family);
+  font-size: var(--set-font-size);
+  font-weight: var(--set-font-weight);
+  color: var(--set-color);
+  text-transform: uppercase;
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  min-height: 40px; /* Minimale hoogte voor uitlijning */
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  line-height: 1.5;
+}
+
+.left-list .suite-item:last-child {
+  border-bottom: none;
+}
+
+/* Divider - verticale lijn */
+.divider {
+  width: 1px;
+  background-color: rgba(0, 0, 0, 0);
+  grid-column: 2; /* Tweede kolom in grid */
+  align-self: stretch;
+  min-height: 100px;
+}
+
+/* Right side - info content */
 .right-side {
-  flex: 1;
+  grid-column: 3; /* Derde kolom in grid */
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 0; /* Geen gap, items hebben zelf border-bottom */
   word-wrap: break-word;
   overflow-wrap: break-word;
   white-space: normal;
+  min-width: 0;
+  align-items: flex-end; /* inhoud naar rechts duwen */
+  text-align: right;     /* tekst rechts uitlijnen */
 }
 
+/* ============================================
+   DATA DISPLAY (PAIR LIST & ROWS)
+   ============================================ */
+
+/* Container voor suite data pairs (label + value) */
 .pair-list {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0px;
   width: 100%;
 }
 
+/* Individuele data row - bevat suite informatie */
 .pair-row {
   display: flex;
   flex-direction: column;
   gap: var(--pair-gap);
-  padding: 10px 0;
-  border-bottom: 0px solid rgba(0, 0, 0, 0.1);
+  padding: 10px 0; /* Identieke padding als suite-item */
+  border-bottom: 1px solid rgba(0, 0, 0, 0); /* Identieke border als suite-item */
   word-break: break-word;
+  align-items: flex-start;
+  min-height: 40px; /* Identieke min-height als suite-item */
+  justify-content: center;
+  box-sizing: border-box;
+  line-height: 1.5;
 }
 
-/* Remote card: tekst in grijze balken op één regel houden */
-#remote-card .pair-value.booked {
+/* Remote card: tekst op één regel houden */
+#remote-card .pair-value {
   display: inline-block;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Remote leeg bericht op één regel houden */
+.remote-empty {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  text-align: center;
+  font-family: var(--info-font-family);
+  font-size: var(--info-font-size);
+  color: var(--info-color);
+  font-weight: 400;
+  line-height: 1.5;
 }
 
 .pair-row:last-child {
   border-bottom: none;
 }
 
-/* Pair variabelen voor de sets  */
+/* Suite label styling (gebruikt CSS variabelen) */
 .pair-label {
   font-family: var(--set-font-family);
   font-size: var(--set-font-size);
@@ -245,72 +471,129 @@ body.silence-on {
   text-transform: uppercase;
   text-align: left
 }
-/* Pair variabelen voor de info box  */
+
+/* Suite value/info styling (gebruikt CSS variabelen) */
 .pair-value {
   font-family: var(--info-font-family);
   font-size: var(--info-font-size);
   color: var(--info-color);
   word-wrap: break-word;
   overflow-wrap: break-word;
+  line-height: 1.5; /* Consistente line-height met suite-item */
+  display: block;
+  width: 100%;        /* volledige breedte van de rechterkolom gebruiken */
+  text-align: right;  /* tekst rechts uitlijnen binnen die breedte */
+  min-height: 20px; /* Minimale hoogte voor consistente uitlijning */
 }
 
-/* Styling voor geboekte/bezette items (NIET Beschikbaar) */
+/* Styling voor geboekte/bezette items (NIET "Beschikbaar") */
 .pair-value.booked {
-  background-color: rgba(0, 0, 0, 0.4);
-  color: #ffffff;
-  padding: 4px 8px;
-  border-radius: 4px;
+  color: #000000;
   font-weight: bold;
 }
 
-/* Note content styling - use #notes-content (already present) or .note-content */
-.note-content, #notes-content {
-  font-family: var(--note-font-family);
-  font-size: var(--note-font-size);
-  font-weight: var(--note-font-weight);
-  color: var(--note-color);
-  line-height: 1.4;
-  padding: 6px 8px;
+/* ============================================
+   REMOTE EDITORS SPECIFIEKE LAYOUT
+   ============================================ */
+
+/* Maak de Remote Editors kaart compacter en meer passend bij de tekst */
+#remote-card {
+  max-width: 360px;     /* smaller blok i.p.v. volledige kolombreedte */
+  margin: 0 auto;       /* centreer het blok horizontaal onder de titel */
+}
+
+/* Voor remote gebruiken we geen 3-koloms grid; enkel tekstblok rechts */
+#remote-card .card-content {
+  display: block;
+}
+/* Extra ruimte voor labels in Audio - beneden zodat ze op één regel blijven */
+#audio-card .left-list {
+  min-width: 0; /* breedte wordt nu via grid-template-columns geregeld */
+}
+
+/* Eventueel: iets kleinere font-size alleen daar */
+#audio-card .left-list .suite-item {
+  font-size: 14px;
+}
+
+/* Audio - beneden: maak de eerste kolom breder voor labels */
+#audio-card .card-content {
+  grid-template-columns: 190px 1px 1fr; /* meer ruimte voor left-list dan standaard 150px */
+}
+/* Remote Editors: tekstblok smaller maken zodat het natuurlijker oogt */
+#remote-card .right-side {
+  align-items: flex-start;
+}
+
+#remote-card .pair-list {
+  max-width: 100%;
+  text-align: center; /* tekst in de remote kolom centreren */
+}
+
+/* Zorg dat de remote-tekst op één regel blijft, gecentreerd in een klein blok */
+#remote-card .pair-value {
+  display: block;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   text-align: center;
 }
+/* ============================================
+   LOGO & TOP ROW ELEMENTEN
+   ============================================ */
 
-/* Logo */
-.logo {
-  width: 200px;
-  border-radius: 0px;
-  margin-bottom: 0px;
+/* (oude logo-text / logo en notes/wifi-cards zijn verwijderd uit de HTML) */
+/* ============================================
+   SLIDESHOW NAVIGATIE (DOTS)
+   ============================================ */
+
+/* Container voor dots navigatie - onderaan slideshow */
+.slideshow-dots {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 10px 0;
+  width: 100%;
+}
+
+/* Container voor dots zelf - links gecentreerd */
+.dots-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+/* Individuele dot - navigatie indicator */
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: rgba(255, 50, 150, 0.4);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Dot hover state */
+.dot:hover {
+  background-color: rgba(255, 50, 150, 0.6);
+  transform: scale(1.2);
+}
+
+/* Actieve dot - huidige slide indicator */
+.dot.active {
+  background-color: rgba(255, 50, 150, 1);
+  transform: scale(1.3);
+}
+
+/* Kleine logo naast dots - rechts uitgelijnd */
+.dots-logo {
+  width: 80px; /* Kleinere breedte voor logo bij dots */
+  height: auto;
   flex-shrink: 0;
+  margin-left: auto; /* Duwt logo naar rechts */
 }
-
-
-@media (max-width: 768px) {
-  .page {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  
-   /* Reset expliciete grid-plaatsing op mobiel zodat de bronvolgorde gebruikt wordt */
-   #kelder-card, #audio-card, #color-card, #remote-card {
-     grid-column: auto !important;
-     grid-row: auto !important;
-   }
-
-  .card {
-    border-radius: 20px;
-    padding: 20px;
-  }
-
-  .logo {
-    width: 140px;
-  }
-
-  .top-row {
-    flex-direction: column;
-  }
-
-  body {
-    padding: 20px;
-  }
-
-}
-

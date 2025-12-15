@@ -1,11 +1,35 @@
-// Configuratie bestand
-// Hier staan alle configuratie instellingen
+/**
+ * Configuratie bestand
+ * 
+ * Dit bestand bevat alle configuratie instellingen voor de applicatie.
+ * Wijzigingen hier hoeven niet gedeployed te worden naar AppScript.
+ */
 
-// AppScript Web App URL - Vervang dit met je eigen URL na deploy
-const APPSCRIPT_API_URL = 'https://script.google.com/macros/s/AKfycbyJn8ARlhM8ROSVL3KvXs9pXr9h-s8N7xSZzj2sB0j_b7qlBUwFux8U4MzePiQ0XH8Epg/exec';
+/**
+ * AppScript Web App URL
+ * 
+ * Vervang deze URL met je eigen AppScript Web App URL na deploy.
+ * Instructies: Zie README.md voor setup instructies.
+ * 
+ * @type {string}
+ */
+/*const APPSCRIPT_API_URL = 'https://script.google.com/macros/s/AKfycbyJn8ARlhM8ROSVL3KvXs9pXr9h-s8N7xSZzj2sB0j_b7qlBUwFux8U4MzePiQ0XH8Epg/exec';*/ /* 2025 versie*/
+const APPSCRIPT_API_URL = 'https://script.google.com/macros/s/AKfycby9ghacL7eptkBWzoTGz8f2a4dnGgcl2IkkEJJV70QwJJhjv5Q7UyoWmOEC_Mbi7vR78A/exec'; /* nieuwe opzet planning versie*/
 
-// SECTION_COLUMNS configuratie - bepaalt welke kolommen bij welke sectie horen
-// Deze configuratie is nu volledig in de frontend, geen AppScript deploy nodig bij wijzigingen!
+/**
+ * SECTION_COLUMNS configuratie
+ * 
+ * Bepaalt welke spreadsheet kolommen bij welke sectie horen.
+ * Deze configuratie staat volledig in de frontend - geen AppScript deploy nodig bij wijzigingen!
+ * 
+ * Structuur:
+ * - key: sectie naam (boven, begane, kelder, etc.)
+ * - column: spreadsheet kolom letter (A, B, AA, etc.)
+ * - header: optionele header tekst uit spreadsheet
+ * - label: optionele custom label (anders wordt header gebruikt)
+ * 
+ * @type {Object<string, Array<{column: string, header?: string, label?: string}>>}
+ */
 const SECTION_COLUMNS = {
   notes: [
     { column: 'C', header: 'NOTITIES', label: 'Notities' }
@@ -52,9 +76,19 @@ const SECTION_COLUMNS = {
   ]
 };
 
-// SECTION_CONFIG - mapping tussen sectie keys en DOM element IDs
+/**
+ * SECTION_CONFIG - Mapping tussen sectie keys en DOM element IDs
+ * 
+ * Koppelt elke sectie aan de bijbehorende HTML elementen:
+ * - listId: ID van de <ul> element voor suite namen (left-list)
+ * - infoId: ID van de <div> element voor suite informatie (right-side)
+ * - contentId: ID van het element voor notes content (alleen voor notes type)
+ * - type: 'note' voor notes sectie, anders standaard suite sectie
+ * 
+ * @type {Object<string, {listId?: string, infoId?: string, contentId?: string, type?: string}>}
+ */
 const SECTION_CONFIG = {
-  notes: { type: 'note', contentId: 'notes-content' },
+  notes: { type: 'note', contentId: 'vandaag-content' },
   boven: { listId: 'boven-suites', infoId: 'boven-info' },
   begane: { listId: 'begane-suites', infoId: 'begane-info' },
   kelder: { listId: 'kelder-suites', infoId: 'kelder-info' },
