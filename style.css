@@ -5,8 +5,8 @@
 /* Body styling - donkere achtergrond */
 body {
   background: #14143c;
-  margin: 10px;
-  padding: 20px;
+  margin: clamp(8px, 1vw, 16px);
+  padding: clamp(15px, 2vw, 35px);
 }
 
 /* Box-sizing reset voor alle elementen */
@@ -19,30 +19,35 @@ body {
 /* ============================================
    CSS VARIABELEN (THEME CONFIGURATIE)
    Pas deze variabelen aan om het hele design te wijzigen
+   Gebruikt clamp() voor responsive scaling
    ============================================ */
 :root {
-  /*variabelen voor titels*/
+  /*variabelen voor titels - schaalt van 32px tot 56px */
   --title-font-family: "Almarena Neue", "Open Sans", sans-serif;
-  --title-font-size: 40px;
+  --title-font-size: clamp(32px, 3vw, 56px);
   --title-font-weight: 700; /* Bold */
   --title-color: #ffffff;
-  /*variabelen voor sets*/
-  --set-font-family: "Bould", "Open Sans", sans-serif;
-  --set-font-size: 20px;
+  /*variabelen voor sets - schaalt van 18px tot 28px */
+  --set-font-family: "Almarena Neue", "Open Sans", sans-serif;
+  --set-font-size: clamp(18px, 1.8vw, 28px);
   --set-font-weight: 700; /* Bold */
   --set-color: #000000;
-  /*variabelen voor info*/
-  --info-font-family: "Bould", "Open Sans", sans-serif;
-  --info-font-size: 20px;
+  /*variabelen voor info - schaalt van 18px tot 28px */
+  --info-font-family: "Almarena Neue", "Open Sans", sans-serif;
+  --info-font-size: clamp(18px, 1.8vw, 28px);
+  --info-font-weight: 100;
   --info-color: #000000;
   /*variabelen voor wifi info*/
   --wifi-info-font-family: "Almarena Neue", "Open Sans", sans-serif;
-  --wifi-info-font-size: 15px;
+  --wifi-info-font-size: clamp(14px, 1.2vw, 20px);
   --wifi-info-font-weight: 600;
   --wifi-info-color: #000000;
-  /*uitlijning*/
-  --pair-gap: 5px;
+  /*uitlijning - schaalt met schermgrootte */
+  --pair-gap: clamp(5px, 0.8vh, 12px);
   --card-padding: 3px 3px;
+  /* Responsive spacing variabelen */
+  --row-padding: clamp(12px, 1.5vh, 24px);
+  --card-gap: clamp(40px, 5vw, 100px);
 }
 
 body.silence-on {
@@ -73,15 +78,15 @@ body.silence-on {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: clamp(20px, 3vh, 50px);
 }
 
 /* Welkom tekst links */
 .welkom-text {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 32px;
+  gap: clamp(6px, 0.8vw, 14px);
+  font-size: clamp(26px, 2.5vw, 48px);
   color: #ffffff;
 }
 
@@ -97,22 +102,22 @@ body.silence-on {
 }
 
 .top-logo {
-  height: 100px;      /* pas gerust aan als je het groter/kleiner wilt */
+  height: clamp(60px, 8vw, 120px);
   width: auto;
   display: block;
-  margin-left: 10px;
+  margin-left: clamp(6px, 1vw, 16px);
 }
 
 /* Vandaag balk rechts - witte achtergrond */
 .vandaag-balk {
   background: #ffffff;
-  padding: 12px 20px;
-  border-radius: 8px;
+  padding: clamp(10px, 1.2vw, 18px) clamp(16px, 2vw, 32px);
+  border-radius: clamp(6px, 0.8vw, 12px);
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: clamp(8px, 1vw, 16px);
   font-family: var(--title-font-family);
-  font-size: 18px;
+  font-size: clamp(15px, 1.4vw, 24px);
   font-weight: 600;
   color: #14143c;
 }
@@ -159,7 +164,7 @@ body.silence-on {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Twee kolommen: Boven Verdieping en Begane Grond */
   grid-auto-rows: min-content;
-  gap: 69px;
+  gap: var(--card-gap);
   align-items: start;
 }
 
@@ -179,22 +184,22 @@ body.silence-on {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
-  gap: 20px;
+  margin-top: clamp(15px, 2vh, 35px);
+  gap: clamp(15px, 2vw, 35px);
 }
 
 /* WiFi Info sectie - links met QR code en WiFi tekst */
 .wifi-info-section {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: clamp(12px, 2vw, 30px);
 }
 
 .wifi-qr-code {
-  width: 120px;
-  height: 120px;
+  width: clamp(80px, 10vw, 150px);
+  height: clamp(80px, 10vw, 150px);
   background: #ffffff;
-  border-radius: 8px;
+  border-radius: clamp(6px, 0.8vw, 12px);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -216,7 +221,7 @@ body.silence-on {
 
 .wifi-line {
   font-family: var(--wifi-info-font-family);
-  font-size: 16px;
+  font-size: var(--wifi-info-font-size);
   font-weight: 400;
   color: #ffffff;
 }
@@ -231,13 +236,13 @@ body.silence-on {
   background: rgba(255, 50, 150, 1); /* Bright pink */
   color: #ffffff;
   border: none;
-  padding: 20px 40px;
+  padding: clamp(14px, 1.8vw, 28px) clamp(28px, 3.5vw, 60px);
   border-radius: 60px;
   font-family: var(--title-font-family);
-  font-size: 15px;
+  font-size: clamp(12px, 1.2vw, 20px);
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: clamp(1px, 0.2vw, 3px);
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
@@ -276,8 +281,8 @@ body.silence-on .on-air-button {
 .slide[data-slide="1"] .right-column {
   display: grid;
   grid-template-columns: 1.4fr 1fr; /* eerste kolom (Suites/Audio) breder dan tweede (Colorgrading/Remote Editors) */
-  row-gap: 20px;
-  column-gap: 69px;
+  row-gap: clamp(15px, 2vh, 35px);
+  column-gap: var(--card-gap);
   align-items: flex-start;
   width: 100%;
     /* Expliciete plaatsing van de card-wrappers in de 2x2 grid */
@@ -302,17 +307,17 @@ body.silence-on .on-air-button {
 /* Basis card styling - alle suite cards */
 .card {
   background: #f7f1eb;
-  border-radius: 30px;
-  padding: 25px 35px 60px; /* extra bodemruimte zodat tekst niet uit de kaart valt */
+  border-radius: clamp(20px, 2vw, 40px);
+  padding: clamp(20px, 2.5vw, 40px) clamp(25px, 3vw, 50px) clamp(40px, 4vw, 80px);
   width: 100%;
-  min-height: 250px;
+  min-height: clamp(200px, 30vh, 400px);
   align-self: start;
 }
 
 /* Kleine cards - gebruikt voor kelder suites (slide 1) */
 .card.small {
-  padding: 18px 28px; /* extra bodemruimte voor small cards */
-  min-height: 20px;
+  padding: clamp(15px, 1.8vw, 30px) clamp(20px, 2.5vw, 40px);
+  min-height: clamp(80px, 15vh, 200px);
 }
 
 /* ============================================
@@ -329,10 +334,10 @@ body.silence-on .on-air-button {
 /* Card titels - boven de cards, gecentreerd */
 .card-title {
   color: var(--title-color);
-  font-family:var(--title-font-family) ;
+  font-family: var(--title-font-family);
   font-size: var(--title-font-size);
   font-weight: var(--title-font-weight);
-  margin-bottom: 10px;
+  margin-bottom: clamp(8px, 1.2vh, 20px);
   margin-top: 0;
   text-align: center; /* Gecentreerd */
   width: 100%;
@@ -341,8 +346,8 @@ body.silence-on .on-air-button {
 /* Card content container - grid layout voor consistente uitlijning */
 .card-content {
   display: grid;
-  grid-template-columns: 150px 1px 1fr; /* Vaste breedte voor left-list */
-  gap: 10px;
+  grid-template-columns: clamp(120px, 12vw, 220px) 1px 1fr; /* Responsive breedte voor left-list */
+  gap: clamp(10px, 1.5vw, 25px);
   align-items: stretch; /* Strekt items om dezelfde hoogte te hebben */
 }
 
@@ -373,9 +378,9 @@ body.silence-on .on-air-button {
   font-weight: var(--set-font-weight);
   color: var(--set-color);
   text-transform: uppercase;
-  padding: 10px 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0);
-  min-height: 40px; /* Minimale hoogte voor uitlijning */
+  padding: var(--row-padding) 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0);
+  min-height: clamp(40px, 5vh, 70px);
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -397,6 +402,10 @@ body.silence-on .on-air-button {
 
 /* Right side - info content */
 .right-side {
+  font-family: var(--info-font-family);
+  font-size: var(--info-font-size);
+  font-weight: var(--info-font-weight);
+  color: var(--info-color);
   grid-column: 3; /* Derde kolom in grid */
   display: flex;
   flex-direction: column;
@@ -426,11 +435,11 @@ body.silence-on .on-air-button {
   display: flex;
   flex-direction: column;
   gap: var(--pair-gap);
-  padding: 10px 0; /* Identieke padding als suite-item */
-  border-bottom: 1px solid rgba(0, 0, 0, 0); /* Identieke border als suite-item */
+  padding: var(--row-padding) 0; /* Identieke padding als suite-item */
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0); /* Identieke border als suite-item */
   word-break: break-word;
   align-items: flex-start;
-  min-height: 40px; /* Identieke min-height als suite-item */
+  min-height: clamp(40px, 5vh, 70px); /* Identieke min-height als suite-item */
   justify-content: center;
   box-sizing: border-box;
   line-height: 1.5;
@@ -452,8 +461,8 @@ body.silence-on .on-air-button {
   text-align: center;
   font-family: var(--info-font-family);
   font-size: var(--info-font-size);
+  font-weight: var(--info-font-weight);
   color: var(--info-color);
-  font-weight: 400;
   line-height: 1.5;
 }
 
@@ -476,6 +485,7 @@ body.silence-on .on-air-button {
 .pair-value {
   font-family: var(--info-font-family);
   font-size: var(--info-font-size);
+  font-weight: var(--info-font-weight);
   color: var(--info-color);
   word-wrap: break-word;
   overflow-wrap: break-word;
@@ -489,7 +499,7 @@ body.silence-on .on-air-button {
 /* Styling voor geboekte/bezette items (NIET "Beschikbaar") */
 .pair-value.booked {
   color: #000000;
-  font-weight: bold;
+  /* font-weight volgt nu --info-font-weight variabele */
 }
 
 /* ============================================
@@ -498,7 +508,7 @@ body.silence-on .on-air-button {
 
 /* Maak de Remote Editors kaart compacter en meer passend bij de tekst */
 #remote-card {
-  max-width: 360px;     /* smaller blok i.p.v. volledige kolombreedte */
+  max-width: clamp(280px, 30vw, 500px);  /* schaalt mee met schermgrootte */
   margin: 0 auto;       /* centreer het blok horizontaal onder de titel */
 }
 
@@ -521,7 +531,7 @@ body.silence-on .on-air-button {
 
 /* Audio - beneden: maak de eerste kolom breder voor labels */
 #audio-card .card-content {
-  grid-template-columns: 250px 1px 1fr; /* Vergrote breedte voor left-list */
+  grid-template-columns: clamp(200px, 22vw, 450px) 1px 1fr; /* Extra brede linkerkolom voor lange labels */
 }
 /* Remote Editors: tekstblok smaller maken zodat het natuurlijker oogt */
 #remote-card .right-side {
@@ -556,9 +566,9 @@ body.silence-on .on-air-button {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  margin-top: 20px;
-  padding: 10px 0;
+  gap: clamp(8px, 1vw, 16px);
+  margin-top: clamp(15px, 2vh, 35px);
+  padding: clamp(8px, 1vh, 16px) 0;
   width: 100%;
 }
 
@@ -573,8 +583,8 @@ body.silence-on .on-air-button {
 
 /* Individuele dot - navigatie indicator */
 .dot {
-  width: 12px;
-  height: 12px;
+  width: clamp(10px, 1vw, 18px);
+  height: clamp(10px, 1vw, 18px);
   border-radius: 50%;
   background-color: rgba(255, 50, 150, 0.4);
   cursor: pointer;
@@ -595,7 +605,7 @@ body.silence-on .on-air-button {
 
 /* Kleine logo naast dots - rechts uitgelijnd */
 .dots-logo {
-  width: 80px; /* Kleinere breedte voor logo bij dots */
+  width: clamp(60px, 6vw, 120px);
   height: auto;
   flex-shrink: 0;
   margin-left: auto; /* Duwt logo naar rechts */
