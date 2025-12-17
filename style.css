@@ -2,11 +2,19 @@
    ALGEMENE LAYOUT & RESET
    ============================================ */
 
-/* Body styling - donkere achtergrond */
+/* Voorkom scrollen - alles moet in viewport passen */
+html {
+  overflow: hidden;
+  height: 100%;
+}
+
+/* Body styling - donkere achtergrond, geen scroll */
 body {
   background: #14143c;
-  margin: clamp(8px, 1vw, 16px);
-  padding: clamp(15px, 2vw, 35px);
+  margin: 0;
+  padding: clamp(10px, 1.5vw, 25px);
+  height: 100vh;
+  overflow: hidden;
 }
 
 /* Box-sizing reset voor alle elementen */
@@ -65,12 +73,14 @@ body.silence-on {
    HOOFD LAYOUT STRUCTUUR
    ============================================ */
 
-/* Hoofd container voor alle content */
+/* Hoofd container voor alle content - vult hele viewport */
 .layout {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: clamp(5px, 1vh, 15px);
+  height: calc(100vh - clamp(20px, 3vw, 50px)); /* Trek padding af */
   margin-bottom: 0px;
+  overflow: hidden;
 }
 
 /* Top row: Welkom tekst links, Vandaag balk rechts */
@@ -78,7 +88,8 @@ body.silence-on {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: clamp(20px, 3vh, 50px);
+  margin-bottom: clamp(10px, 1.5vh, 25px);
+  flex-shrink: 0; /* Voorkom dat header krimpt */
 }
 
 /* Welkom tekst links */
@@ -142,17 +153,24 @@ body.silence-on {
 .slideshow-container {
   position: relative;
   width: 100%;
+  flex: 1; /* Vul resterende ruimte */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 
 /* Individuele slide - standaard verborgen */
 .slide {
   display: none;
   width: 100%;
+  flex: 1;
+  overflow: hidden;
 }
 
 /* Actieve slide - zichtbaar */
 .slide.active {
-  display: block;
+  display: flex;
+  flex-direction: column;
 }
 
 /* ============================================
@@ -163,9 +181,11 @@ body.silence-on {
 .slide[data-slide="0"] .page {
   display: grid;
   grid-template-columns: 1fr 1fr; /* Twee kolommen: Boven Verdieping en Begane Grond */
-  grid-auto-rows: min-content;
+  grid-auto-rows: 1fr;
   gap: var(--card-gap);
-  align-items: start;
+  align-items: stretch;
+  flex: 1;
+  overflow: hidden;
 }
 
 /* Suite cards op slide 0 */
@@ -184,8 +204,9 @@ body.silence-on {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: clamp(15px, 2vh, 35px);
-  gap: clamp(15px, 2vw, 35px);
+  margin-top: clamp(8px, 1vh, 20px);
+  gap: clamp(10px, 1.5vw, 25px);
+  flex-shrink: 0;
 }
 
 /* WiFi Info sectie - links met QR code en WiFi tekst */
@@ -265,8 +286,10 @@ body.silence-on .on-air-button {
 .slide[data-slide="1"] .page {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: clamp(10px, 1.5vh, 25px);
   align-items: stretch;
+  flex: 1;
+  overflow: hidden;
 }
 
 .page {
@@ -281,10 +304,13 @@ body.silence-on .on-air-button {
 .slide[data-slide="1"] .right-column {
   display: grid;
   grid-template-columns: 1.4fr 1fr; /* eerste kolom (Suites/Audio) breder dan tweede (Colorgrading/Remote Editors) */
-  row-gap: clamp(15px, 2vh, 35px);
+  grid-template-rows: 1fr 1fr; /* Twee gelijke rijen */
+  row-gap: clamp(10px, 1.5vh, 25px);
   column-gap: var(--card-gap);
-  align-items: flex-start;
+  align-items: stretch;
   width: 100%;
+  flex: 1;
+  overflow: hidden;
     /* Expliciete plaatsing van de card-wrappers in de 2x2 grid */
     .slide[data-slide="1"] .right-column > .card-wrapper:nth-of-type(1) { grid-column: 1; grid-row: 1; }
     .slide[data-slide="1"] .right-column > .card-wrapper:nth-of-type(2) { grid-column: 2; grid-row: 1; }
@@ -307,17 +333,18 @@ body.silence-on .on-air-button {
 /* Basis card styling - alle suite cards */
 .card {
   background: #f7f1eb;
-  border-radius: clamp(20px, 2vw, 40px);
-  padding: clamp(20px, 2.5vw, 40px) clamp(25px, 3vw, 50px) clamp(40px, 4vw, 80px);
+  border-radius: clamp(15px, 1.5vw, 30px);
+  padding: clamp(15px, 2vw, 30px) clamp(20px, 2.5vw, 40px) clamp(25px, 3vw, 50px);
   width: 100%;
-  min-height: clamp(200px, 30vh, 400px);
-  align-self: start;
+  min-height: 0; /* Geen minimum, laat flexbox bepalen */
+  align-self: stretch;
+  overflow: hidden;
 }
 
 /* Kleine cards - gebruikt voor kelder suites (slide 1) */
 .card.small {
-  padding: clamp(15px, 1.8vw, 30px) clamp(20px, 2.5vw, 40px);
-  min-height: clamp(80px, 15vh, 200px);
+  padding: clamp(10px, 1.2vw, 20px) clamp(15px, 2vw, 30px);
+  min-height: 0;
 }
 
 /* ============================================
@@ -329,6 +356,8 @@ body.silence-on .on-air-button {
   display: flex;
   flex-direction: column;
   width: 100%;
+  min-height: 0; /* Belangrijk voor flexbox overflow */
+  overflow: hidden;
 }
 
 /* Card titels - boven de cards, gecentreerd */
@@ -567,9 +596,10 @@ body.silence-on .on-air-button {
   justify-content: space-between;
   align-items: center;
   gap: clamp(8px, 1vw, 16px);
-  margin-top: clamp(15px, 2vh, 35px);
-  padding: clamp(8px, 1vh, 16px) 0;
+  margin-top: clamp(8px, 1vh, 20px);
+  padding: clamp(5px, 0.8vh, 12px) 0;
   width: 100%;
+  flex-shrink: 0; /* Voorkom dat dots krimpen */
 }
 
 /* Container voor dots zelf - links gecentreerd */
