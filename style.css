@@ -286,7 +286,7 @@ body.silence-on .on-air-button {
 .slide[data-slide="1"] .page {
   display: flex;
   flex-direction: column;
-  gap: clamp(10px, 1.5vh, 25px);
+  gap: clamp(6px, 1vh, 18px);
   align-items: stretch;
   flex: 1;
   overflow: hidden;
@@ -305,8 +305,8 @@ body.silence-on .on-air-button {
   display: grid;
   grid-template-columns: 1.4fr 1fr; /* eerste kolom (Suites/Audio) breder dan tweede (Colorgrading/Remote Editors) */
   grid-template-rows: 1fr 1fr; /* Twee gelijke rijen */
-  row-gap: clamp(10px, 1.5vh, 25px);
-  column-gap: var(--card-gap);
+  row-gap: clamp(6px, 1vh, 18px);
+  column-gap: clamp(25px, 3vw, 60px);
   align-items: stretch;
   width: 100%;
   flex: 1;
@@ -322,6 +322,37 @@ body.silence-on .on-air-button {
 .slide1-bottom {
   margin-top: 0;
   width: 100%;
+}
+
+/* ============================================
+   SLIDE 2 SPECIFIEKE COMPACT STYLING
+   ============================================ */
+
+/* Kleinere fonts voor slide 2 */
+.slide[data-slide="1"] .card-title {
+  font-size: clamp(24px, 2.2vw, 40px);
+  margin-bottom: clamp(5px, 0.8vh, 12px);
+}
+
+.slide[data-slide="1"] .suite-item,
+.slide[data-slide="1"] .pair-label {
+  font-size: clamp(14px, 1.4vw, 22px);
+  padding: clamp(6px, 0.8vh, 14px) 0;
+  min-height: clamp(28px, 3.5vh, 50px);
+}
+
+.slide[data-slide="1"] .pair-row {
+  padding: clamp(6px, 0.8vh, 14px) 0;
+  min-height: clamp(28px, 3.5vh, 50px);
+}
+
+.slide[data-slide="1"] .pair-value {
+  font-size: clamp(14px, 1.4vw, 22px);
+}
+
+/* Compactere cards voor slide 2 */
+.slide[data-slide="1"] .card.small {
+  padding: clamp(8px, 1vw, 16px) clamp(12px, 1.5vw, 24px);
 }
 
 /* (placeholder kolom verwijderd in huidige layout) */
