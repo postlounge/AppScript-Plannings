@@ -22,8 +22,12 @@ function doGet(e) {
     result = { error: 'Invalid path' };
   }
   
+  // CORS headers voor GitHub Pages compatibility
   return ContentService.createTextOutput(JSON.stringify(result))
-    .setMimeType(ContentService.MimeType.JSON);
+    .setMimeType(ContentService.MimeType.JSON)
+    .addHeader('Access-Control-Allow-Origin', '*')
+    .addHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
+    .addHeader('Access-Control-Allow-Headers', 'Content-Type');
 }
 
 // Cache voor sheet object (blijft actief tijdens script execution)
