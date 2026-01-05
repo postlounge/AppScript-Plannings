@@ -75,9 +75,10 @@ async function loadAndUpdateDashboard(showLoader = false) {
     } else {
       // Fallback: toon foutmelding alleen bij eerste load
       if (showLoader) {
-        const errorMsg = 'Kon geen data ophalen. Controleer de AppScript API configuratie.';
+        const errorMsg = 'Kon geen data ophalen. Controleer de AppScript API configuratie in config.js en zorg dat de Web App correct is gedeployed.';
         console.error(errorMsg);
-        document.body.innerHTML = `<div style="color: white; padding: 20px; text-align: center;">${errorMsg}</div>`;
+        console.error('Debug info: Check browser console (F12) voor meer details.');
+        document.body.innerHTML = `<div style="color: #ff6b6b; padding: 20px; text-align: center; font-family: Arial; line-height: 1.6;"><strong>❌ Fout bij laden:</strong><br>${errorMsg}<br><br><small style="color: #999;">Raadpleeg de browser console (F12) voor meer details.</small></div>`;
       }
     }
   } finally {

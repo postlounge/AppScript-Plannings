@@ -2,8 +2,7 @@
 // Deze code.gs is specifiek voor gebruik met GitHub Pages
 // Deploy deze als Web App in Google Apps Script
 // 
-// Deze versie geeft alleen ruwe data terug - alle configuratie en transformatie
-// gebeurt in de frontend (script.js)
+// Gebruikt JSONP voor CORS compatibiliteit (Google Apps Script ondersteunt geen CORS headers)
 
 const TAB_NAME = '2025';
 const SPREADSHEET_ID = '1vi902Bu5j1mCzdBjqYTKAOfzgDjt5SXaJm6uD86jSI8';
@@ -11,6 +10,7 @@ const SPREADSHEET_ID = '1vi902Bu5j1mCzdBjqYTKAOfzgDjt5SXaJm6uD86jSI8';
 // REST API endpoint voor data ophalen
 function doGet(e) {
   const path = e.parameter.path || 'today';
+  const callback = e.parameter.callback || 'callback'; // JSONP callback parameter
   let result;
   
   if (path === 'today') {
@@ -22,12 +22,10 @@ function doGet(e) {
     result = { error: 'Invalid path' };
   }
   
-  // CORS headers voor GitHub Pages compatibility
-  return ContentService.createTextOutput(JSON.stringify(result))
-    .setMimeType(ContentService.MimeType.JSON)
-    .addHeader('Access-Control-Allow-Origin', '*')
-    .addHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS')
-    .addHeader('Access-Control-Allow-Headers', 'Content-Type');
+  // Return JSONP response (wraps JSON in callback function)
+  const jsonpResponse = callback + '(' + JSON.stringify(result) + ')';
+  return ContentService.createTextOutput(jsonpResponse)
+    .setMimeType(ContentService.MimeType.JAVASCRIPT);
 }
 
 // Cache voor sheet object (blijft actief tijdens script execution)

@@ -53,18 +53,21 @@ async function fetchDashboardData(path = 'today', rowNumber = null) {
       url += `?path=row&row=${rowNumber}`;
     }
 
+    console.log('API URL:', url);
     const startTime = performance.now();
     const response = await fetch(url);
     const fetchTime = performance.now() - startTime;
-    console.log(`Fetch tijd: ${fetchTime.toFixed(2)}ms`);
+    console.log(`Fetch tijd: ${fetchTime.toFixed(2)}ms, Status: ${response.status}`);
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
     const rawData = await response.json();
+    console.log('API Response:', rawData);
     
-    // Transformeer ruwe data naar de gewenste structuur
+    // Controleer of er een error in de data is
     if (rawData.error) {
+      console.error('API Error:', rawData.error);
       return rawData;
     }
     
@@ -82,6 +85,11 @@ async function fetchDashboardData(path = 'today', rowNumber = null) {
     return result;
   } catch (error) {
     console.error('Fout bij ophalen van data:', error);
+    console.error('Error details:', {
+      message: error.message,
+      stack: error.stack,
+      url: APPSCRIPT_API_URL
+    });
     return null;
   }
 }
