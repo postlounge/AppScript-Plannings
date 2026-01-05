@@ -13,7 +13,7 @@
  * 
  * @type {string}
  */
-const APPSCRIPT_API_URL = 'https://script.google.com/macros/s/AKfycbyJn8ARlhM8ROSVL3KvXs9pXr9h-s8N7xSZzj2sB0j_b7qlBUwFux8U4MzePiQ0XH8Epg/exec'; /* 2025 versie */
+const APPSCRIPT_API_URL = 'https://script.google.com/macros/s/AKfycbyNlo8uPF2eE_-1y_Pz7ZoBOiQNVQ4H8y-XOQ7KYi1SP2GMClvRqCKuDywheMle79rizw/exec'; /* 2025 versie */
 /*const APPSCRIPT_API_URL = 'https://script.google.com/macros/s/AKfycby9ghacL7eptkBWzoTGz8f2a4dnGgcl2IkkEJJV70QwJJhjv5Q7UyoWmOEC_Mbi7vR78A/exec'; nieuwe opzet planning versie */
 
 /**
