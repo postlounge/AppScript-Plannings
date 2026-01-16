@@ -437,7 +437,6 @@ body.silence-on .on-air-button {
   font-size: var(--set-font-size);
   font-weight: var(--set-font-weight);
   color: var(--set-color);
-  text-transform: uppercase;
   padding: var(--row-padding) 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.0);
   min-height: clamp(40px, 5vh, 70px);
@@ -537,7 +536,6 @@ body.silence-on .on-air-button {
   font-weight: var(--set-font-weight);
   text-align: var(--set-align);
   color: var(--set-color);
-  text-transform: uppercase;
   text-align: left
 }
 
