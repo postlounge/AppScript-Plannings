@@ -113,7 +113,13 @@ function populateSection(config, entries) {
     // Voor andere secties: toon "Beschikbaar" als leeg
     const isRemote = config.infoId === 'remote-info';
     if (item.value && item.value.trim()) {
-      value.textContent = item.value;
+      // Verwijder alles na het leesteken "-"
+      let displayValue = item.value.trim();
+      const dashIndex = displayValue.indexOf('-');
+      if (dashIndex !== -1) {
+        displayValue = displayValue.substring(0, dashIndex).trim();
+      }
+      value.textContent = displayValue;
       value.classList.add('booked');
     } else if (!isRemote) {
       value.textContent = 'Beschikbaar';
