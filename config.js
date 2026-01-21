@@ -13,8 +13,7 @@
  * 
  * @type {string}
  */
-const APPSCRIPT_API_URL = 'https://script.google.com/macros/s/AKfycbyNlo8uPF2eE_-1y_Pz7ZoBOiQNVQ4H8y-XOQ7KYi1SP2GMClvRqCKuDywheMle79rizw/exec'; /* Originele werkende versie */
-/*const APPSCRIPT_API_URL = 'https://script.google.com/macros/s/AKfycby9ghacL7eptkBWzoTGz8f2a4dnGgcl2IkkEJJV70QwJJhjv5Q7UyoWmOEC_Mbi7vR78A/exec'; nieuwe opzet planning versie */
+const APPSCRIPT_API_URL = 'https://script.google.com/macros/s/AKfycbzPMm1aJKDO3YY60RFV3-fes4vbELdOnjnucLgbTwffW8d17HngpfZ35EfGqdSLtQluqA/exec';
 
 /**
  * SECTION_COLUMNS configuratie
@@ -55,24 +54,24 @@ const SECTION_COLUMNS = {
   kelder: [
     { column: 'X', header: 'SET 15 - Brommerhok' },
     { column: 'Y', header: 'SET 16 - Fietsenhok' },
-    { column: 'AR', header: 'Set 28 - Speelkwartier' }
+    { column: 'AA', header: 'Set 17 - Speelkwartier' }
   ],
   audio: [
-    { column: 'AH', header: 'Set 21 - Gitaarles', label: 'Gitaarles Protools' },
-    { column: 'AI', header: 'Set 22 - Zangles (VO)', label: 'Zangles Voice-Over' },
-    { column: 'AJ', header: 'Set 23 - Drumles', label: 'Drumles Protools' },
-    { column: 'AK', header: 'Set 24 - Trompetles (VO)', label: 'Trompetles Voice-Over' }
+    { column: 'AJ', header: 'Set 1 - Gitaarles', label: 'Gitaarles Protools' },
+    { column: 'AK', header: 'Set 2 - Zangles (VO)', label: 'Zangles Voice-Over' },
+    { column: 'AL', header: 'Set 3 - Drumles', label: 'Drumles Protools' },
+    { column: 'AM', header: 'Set 4 - Trompetles (VO)', label: 'Trompetles Voice-Over' }
   ],
   color: [
-    { column: 'AM', header: 'Set 25 -Toneel (Davinci)', label: 'Toneel' },
-    { column: 'AN', header: 'Set 26 - Klein theater (Nucoda', label: 'Klein Theater' },
-    { column: 'AO', header: 'Set 27 - Drama (Davinci)', label: 'Drama' }
+    { column: 'AO', header: 'Set 1 -Toneel (Davinci)', label: 'Toneel' },
+    { column: 'AP', header: 'Set 2 - Klein theater (Nucoda', label: 'Klein Theater' },
+    { column: 'AQ', header: 'Set 3 - Drama (Davinci)', label: 'Drama' }
   ],
   remote: [
-    { column: 'AC', header: 'REMOTE HUISWERK 01' },
-    { column: 'AD', header: 'REMOTE HUISWERK 02' },
-    { column: 'AE', header: 'REMOTE HUISWERK 03' },
-    { column: 'AAF', header: 'REMOTE HUISWERK 04' }
+    { column: 'AE', header: 'REMOTE HUISWERK 01' },
+    { column: 'AF', header: 'REMOTE HUISWERK 02' },
+    { column: 'AG', header: 'REMOTE HUISWERK 03' },
+    { column: 'AH', header: 'REMOTE HUISWERK 04' }
   ]
 };
 
