@@ -199,6 +199,20 @@ function initSlideshow() {
       dots[index].classList.add('active');
     }
 
+    // Toon de juiste WiFi-balk onderaan voor de actieve slide
+    const bottomGrids = document.querySelectorAll('.bottom-info-grid[data-slide]');
+    bottomGrids.forEach((grid) => {
+      const gridSlide = grid.getAttribute('data-slide');
+      grid.style.display = gridSlide === String(index) ? 'flex' : 'none';
+    });
+
+    // Toon de juiste Opnames-knop voor de actieve slide
+    const onAirButtons = document.querySelectorAll('.on-air-button[data-slide]');
+    onAirButtons.forEach((btn) => {
+      const btnSlide = btn.getAttribute('data-slide');
+      btn.style.display = btnSlide === String(index) ? 'inline-flex' : 'none';
+    });
+
     currentSlide = index;
   }
 

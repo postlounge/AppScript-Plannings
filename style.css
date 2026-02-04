@@ -199,12 +199,11 @@ body.silence-on {
   grid-row: 1;
 }
 
-/* Bottom info grid onder Begane Grond */
+/* Bottom info grid (WiFi + ON-AIR) */
 .bottom-info-grid {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: clamp(8px, 1vh, 20px);
+  justify-content: flex-start;
+  align-items: flex-end;
   gap: clamp(10px, 1.5vw, 25px);
   flex-shrink: 0;
 }
@@ -318,10 +317,32 @@ body.silence-on .on-air-button {
     .slide[data-slide="1"] .right-column > .card-wrapper:nth-of-type(4) { grid-column: 2; grid-row: 2; }
 }
 
-/* Bottom info grid voor slide 1 */
-.slide1-bottom {
-  margin-top: 0;
+/* Bottom bar: gedeelde onderbalk met WiFi, dots (midden), Opnames en logo */
+.bottom-bar {
+  display: grid;
+  grid-template-columns: auto 1fr auto; /* links WiFi, midden dots, rechts Opnames + logo */
+  align-items: flex-end;
+  column-gap: clamp(10px, 1.5vw, 25px);
   width: 100%;
+  flex-shrink: 0; /* altijd zichtbaar, niet laten krimpen */
+  margin-top: clamp(8px, 1vh, 20px);
+}
+
+.bottom-left {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(10px, 1.5vw, 25px);
+}
+
+.bottom-center {
+  display: flex;
+  justify-content: center; /* pagina-dots altijd in het midden */
+}
+
+.bottom-right {
+  display: flex;
+  align-items: flex-end;
+  gap: clamp(10px, 1.5vw, 25px); /* ruimte tussen Opnames en logo */
 }
 
 /* ============================================
@@ -579,9 +600,8 @@ body.silence-on .on-air-button {
   min-width: 0; /* breedte wordt nu via grid-template-columns geregeld */
 }
 
-/* Audio - beneden: zorg dat items op één regel blijven */
+/* Audio - beneden: zorg dat items op één regel blijven (maar gebruik dezelfde fontgrootte als andere slide-1 kaarten) */
 #audio-card .left-list .suite-item {
-  font-size: var(--set-font-size); /* Hetzelfde font behouden */
   white-space: nowrap; /* Tekst op één regel */
   overflow: hidden;
   text-overflow: ellipsis; /* Met puntjes afkappen als nodig */
@@ -619,25 +639,20 @@ body.silence-on .on-air-button {
    SLIDESHOW NAVIGATIE (DOTS)
    ============================================ */
 
-/* Container voor dots navigatie - onderaan slideshow */
+/* Container voor dots navigatie - in het midden van de onderbalk */
 .slideshow-dots {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   gap: clamp(8px, 1vw, 16px);
-  margin-top: clamp(8px, 1vh, 20px);
-  padding: clamp(5px, 0.8vh, 12px) 0;
-  width: 100%;
-  flex-shrink: 0; /* Voorkom dat dots krimpen */
 }
 
-/* Container voor dots zelf - links gecentreerd */
+/* Container voor dots zelf */
 .dots-container {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 10px;
-  flex: 1;
 }
 
 /* Individuele dot - navigatie indicator */
@@ -667,5 +682,4 @@ body.silence-on .on-air-button {
   width: clamp(60px, 6vw, 120px);
   height: auto;
   flex-shrink: 0;
-  margin-left: auto; /* Duwt logo naar rechts */
 }

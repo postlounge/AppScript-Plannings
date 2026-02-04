@@ -55,21 +55,6 @@
                   <div class="right-side" id="begane-info"></div>
                 </div>
               </section>
-              <!-- WiFi Info en ON AIR button onder Begane Grond -->
-              <div class="bottom-info-grid">
-                <div class="wifi-info-section">
-                  <div class="wifi-qr-code">
-                    <img src="/AppScript-Plannings/fotos/pl-wifi.png" alt="WiFi QR Code" class="qr-image">
-                  </div>
-                  <div class="wifi-text">
-                    <div class="wifi-line">WiFi | De School</div>
-                    <div class="wifi-line">WW | MijnEersteSchooldag2104</div>
-                  </div>
-                </div>
-                <div class="on-air-section">
-                  <button id="silence-toggle" class="on-air-button" type="button">ON AIR</button>
-                </div>
-              </div>
             </div>
           </div>
         </div>
@@ -119,8 +104,15 @@
                 </section>
               </div>
             </div>
-            <!-- WiFi Info en ON AIR button onder de 2x2 grid -->
-            <div class="bottom-info-grid slide1-bottom">
+          </div>
+        </div>
+        
+        <!-- Onderbalk: WiFi | WW | (blank) | pagina-dots (midden) | (blank) | Opnames | Logobutton -->
+        <div class="bottom-bar">
+          <!-- Linkerblok: WiFi-code + WW (per slide verschillend) -->
+          <div class="bottom-left">
+            <!-- WiFi voor slide 0 -->
+            <div class="bottom-info-grid" data-slide="0">
               <div class="wifi-info-section">
                 <div class="wifi-qr-code">
                   <img src="/AppScript-Plannings/fotos/pl-wifi.png" alt="WiFi QR Code" class="qr-image">
@@ -130,26 +122,46 @@
                   <div class="wifi-line">WW | MijnEersteSchooldag2104</div>
                 </div>
               </div>
-              <div class="on-air-section">
-                <button id="silence-toggle-slide1" class="on-air-button" type="button">ON AIR</button>
+            </div>
+
+            <!-- WiFi voor slide 1 -->
+            <div class="bottom-info-grid" data-slide="1">
+              <div class="wifi-info-section">
+                <div class="wifi-qr-code">
+                  <img src="/AppScript-Plannings/fotos/pl-wifi.png" alt="WiFi QR Code" class="qr-image">
+                </div>
+                <div class="wifi-text">
+                  <div class="wifi-line">WiFi | De School</div>
+                  <div class="wifi-line">WW | MijnEersteSchooldag2104</div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        
-        <!-- Dots navigatie: Onderaan de slideshow voor handmatige navigatie -->
-        <div class="slideshow-dots">
-          <div class="dots-container">
-            <span class="dot active" data-slide="0"></span>
-            <span class="dot" data-slide="1"></span>
+
+          <!-- Middenblok: pagina-dots altijd gecentreerd -->
+          <div class="bottom-center">
+            <div class="slideshow-dots">
+              <div class="dots-container">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+              </div>
+            </div>
           </div>
-          <img
-            src="/AppScript-Plannings/fotos/Postlounge_LogoIcon-Outlined_RGB_white.svg"
-            alt="Postlounge Logo"
-            class="dots-logo"
-            id="refresh-logo"
-            title="Klik om data te verversen"
-          >
+
+          <!-- Rechterblok: Opnames-knop(pen) + refresh-logobutton -->
+          <div class="bottom-right">
+            <div class="on-air-section">
+              <button id="silence-toggle" class="on-air-button" type="button" data-slide="0">ON AIR</button>
+              <button id="silence-toggle-slide1" class="on-air-button" type="button" data-slide="1">ON AIR</button>
+            </div>
+            <img
+              src="/AppScript-Plannings/fotos/Postlounge_LogoIcon-Outlined_RGB_white.svg"
+              alt="Postlounge Logo"
+              class="dots-logo"
+              id="refresh-logo"
+              title="Klik om data te verversen"
+            >
+          </div>
         </div>
       </div>
     </div>
