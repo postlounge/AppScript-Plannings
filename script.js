@@ -168,7 +168,7 @@ function initSlideshow() {
   const dots = document.querySelectorAll('.dot');
   let currentSlide = 0;      // Huidige slide index
   let slideTimer = null;     // Timer referentie voor automatische wisseling
-  let SLIDE_INTERVAL = 60000; // 1 minuut tussen slides
+  let SLIDE_INTERVAL = 10000; // 10 Seconden tussen slides
 
   /**
    * Toont een specifieke slide
