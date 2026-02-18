@@ -655,6 +655,18 @@ body.silence-on .on-air-button {
   gap: 10px;
 }
 
+/* Countdown timer - subtiel tussen de dots */
+.countdown-timer {
+  color: rgba(255, 255, 255, 0.5);
+  font-family: var(--title-font-family);
+  font-size: clamp(10px, 0.9vw, 14px);
+  font-weight: 400;
+  text-align: center;
+  opacity: 0.6;
+  transition: opacity 0.3s ease;
+  min-width: clamp(18px, 1.5vw, 24px);
+}
+
 /* Individuele dot - navigatie indicator */
 .dot {
   width: clamp(10px, 1vw, 18px);

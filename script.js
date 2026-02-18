@@ -166,9 +166,41 @@ document.addEventListener('DOMContentLoaded', () => {
 function initSlideshow() {
   const slides = document.querySelectorAll('.slide');
   const dots = document.querySelectorAll('.dot');
+  const countdownElement = document.getElementById('slideshow-countdown');
   let currentSlide = 0;      // Huidige slide index
   let slideTimer = null;     // Timer referentie voor automatische wisseling
-  let SLIDE_INTERVAL = 10000; // 10 Seconden tussen slides
+  let countdownTimer = null; // Timer referentie voor countdown
+  let countdownSeconds = 15; // Huidige countdown waarde
+  let SLIDE_INTERVAL = 15000; // 15 Seconden tussen slides
+
+  /**
+   * Reset de countdown timer
+   * 
+   * Reset de countdown naar de startwaarde en update het display.
+   */
+  function resetCountdown() {
+    countdownSeconds = 15;
+    if (countdownElement) {
+      countdownElement.textContent = countdownSeconds;
+    }
+  }
+
+  /**
+   * Update de countdown display
+   * 
+   * Decrementeert de countdown en update het display. Bij 0 wordt de volgende slide getoond.
+   */
+  function updateCountdown() {
+    if (countdownSeconds > 0) {
+      countdownSeconds--;
+      if (countdownElement) {
+        countdownElement.textContent = countdownSeconds;
+      }
+    } else {
+      // Countdown is 0, reset naar 15 (nextSlide wordt al aangeroepen door slideTimer)
+      resetCountdown();
+    }
+  }
 
   /**
    * Toont een specifieke slide
@@ -213,6 +245,9 @@ function initSlideshow() {
       btn.style.display = btnSlide === String(index) ? 'inline-flex' : 'none';
     });
 
+    // Reset countdown bij slide wisseling
+    resetCountdown();
+
     currentSlide = index;
   }
 
@@ -231,25 +266,41 @@ function initSlideshow() {
    * 
    * Start een interval timer die automatisch naar de volgende slide wisselt.
    * Stopt eerst een bestaande timer als die er is.
+   * Start ook de countdown timer.
    */
   function startTimer() {
-    // Stop bestaande timer als die er is
+    // Stop bestaande timers als die er zijn
     if (slideTimer) {
       clearInterval(slideTimer);
     }
-    // Start nieuwe timer
+    if (countdownTimer) {
+      clearInterval(countdownTimer);
+    }
+    
+    // Reset countdown
+    resetCountdown();
+    
+    // Start slide timer
     slideTimer = setInterval(nextSlide, SLIDE_INTERVAL);
+    
+    // Start countdown timer (update elke seconde)
+    countdownTimer = setInterval(updateCountdown, 1000);
   }
 
   /**
    * Stopt de automatische slide timer
    * 
    * Stopt en reset de timer voor automatische slide wisseling.
+   * Stopt ook de countdown timer.
    */
   function stopTimer() {
     if (slideTimer) {
       clearInterval(slideTimer);
       slideTimer = null;
+    }
+    if (countdownTimer) {
+      clearInterval(countdownTimer);
+      countdownTimer = null;
     }
   }
 
@@ -266,8 +317,7 @@ function initSlideshow() {
   showSlide(0);
   
   // Start automatische slidewisseling
-  // Tijdelijk uitgeschakeld voor aanpassingen
-  // startTimer();
+  startTimer();
 
 }
 
